@@ -119,5 +119,5 @@ custom.md
 composer.lock
 phpunit.xml
 vendor
-.php_cs.cache
+.php_cs*
 coverage
