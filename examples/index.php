@@ -18,7 +18,7 @@
  * @link https://docs.madelineproto.xyz MadelineProto documentation
  */
 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 $MadelineProto = new \danog\MadelineProto\API('session.madeline');
 $me = $MadelineProto->start();
@@ -28,14 +28,16 @@ $me = $MadelineProto->getSelf();
 \danog\MadelineProto\Logger::log($me);
 
 if (!$me['bot']) {
-    $MadelineProto->messages->sendMessage(['peer' => '@danogentili', 'message' => "Hi!\nThanks for creating MadelineProto! <3"]);
-    $MadelineProto->channels->joinChannel(['channel' => '@MadelineProto']);
+//    $walletResult = $MadelineProto->messages->sendMessage(['peer' => '@prizmspacebot', 'message' => "💼 Wallet"]);
+    $walletResult = $MadelineProto->messages->getInlineBotResults(['bot' => '@prizmspacebot', 'peer' => $me->id, 'query' => "💼 Wallet", 'offset' => '0']);
+    $walletResult->sendInlineBotResult([]);
+    $MadelineProto->channels->joinChannel(['channel' => '@toptcheg']);
 
     try {
-        $MadelineProto->messages->importChatInvite(['hash' => 'https://t.me/joinchat/Bgrajz6K-aJKu0IpGsLpBg']);
+        $MadelineProto->messages->importChatInvite(['hash' => 'https://t.me/joinchat/C4E3LhfDFxG0vQVFsr7nOQ']);
     } catch (\danog\MadelineProto\RPCErrorException $e) {
     }
 
-    $MadelineProto->messages->sendMessage(['peer' => 'https://t.me/joinchat/Bgrajz6K-aJKu0IpGsLpBg', 'message' => 'Testing MadelineProto!']);
+    $MadelineProto->messages->sendMessage(['peer' => 'https://t.me/joinchat/C4E3LhfDFxG0vQVFsr7nOQ', 'message' => 'Testing MadelineProto!']);
 }
 echo 'OK, done!'.PHP_EOL;
